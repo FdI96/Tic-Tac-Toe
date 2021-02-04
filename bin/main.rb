@@ -30,8 +30,9 @@ if response.to_n == 1
             if array.include?(number)
                 puts "Change the position #{number} for an X"
                 board
-            
-            
+                puts 'check if there is one combination completed'
+                return puts 'X wins' if win
+                
 
         end
     else
