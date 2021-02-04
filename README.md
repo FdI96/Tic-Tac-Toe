@@ -21,7 +21,7 @@ Please install ruby, you may follow this guide from Odin Project webpage [here](
 
 ## USAGE
 
-To see the "Hello World!" message from the "main.rb" file type in your console: "ruby ./bin/main.rb"
+To see the "Hello World!" message from the "main.rb" file type in your console: "bin/main.rb"
 
 ## AUTHOR
 
