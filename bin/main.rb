@@ -21,7 +21,7 @@ if response.to_n == 1
         game = true
         win = false
         while game
-            if win
+            
             puts "Your turn, select one number to put a 'X'"
             puts board
             # here I set up the board and the array that will manage the game
@@ -29,6 +29,7 @@ if response.to_n == 1
             array = [1,2,3,4,5,6,7,8,9]
             if array.include?(number)
                 puts "Change the position #{number} for an X"
+                board
             
             
 
