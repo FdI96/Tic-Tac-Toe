@@ -1,14 +1,21 @@
+<<<<<<< HEAD
 # Tic-Tac-Toe
 
 Tic Tac Toe game in a shell for one or two players
 
+=======
+>>>>>>> origin/Development
 # Tic-Tac-Toe First Milestone : Set-up
 
 **This is my third Ruby project for Microverse**
 
 # Getting started :
 
+<<<<<<< HEAD
 In this second milestone project, I created the "User's interface" to dive in to the basic game's flow.
+=======
+In this project, I set up all the files to start the project, like the linters, bin and lib directorys and make the "main.rb" file executable.
+>>>>>>> origin/Development
 
 # Prerequisites :
 
@@ -25,7 +32,11 @@ Please install ruby, you may follow this guide from Odin Project webpage [here](
 
 ## USAGE
 
+<<<<<<< HEAD
 To try the basic flow of the game from the "main.rb" file type in your console: "bin/main.rb"
+=======
+To see the "Hello World!" message from the "main.rb" file type in your console: "bin/main.rb"
+>>>>>>> origin/Development
 
 ## AUTHOR
 
