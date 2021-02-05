@@ -42,25 +42,7 @@ if key == 'P'
   if player_coin == coin
     all.each do |elem|
       if [1, 3, 5, 7, 9].include?(elem)
-        puts "Player #{player_one}'s turn!"
-        band = false
-        until band # In case that the slot is filled I need to restart the loop
-          puts 'Please select one empty space'
-          puts updated_board
-          number = gets.chomp.to_i
-          if all.include?(number) # I ask if the number selected is in the (1..9) range
-            if board_array[number - 1] == 'X' || board_array[number - 1] == 'O'
-              puts 'Slot occupied'
-            else # analize in the following lines if the next move is a win move or a draw move
-              board_array[number - 1] = 'X'
-              puts updated_board
-              print board_array, "\n"
-              band = true # Stops the loop to let the player's next turn
-            end
-          else
-            puts 'No such position'
-          end
-        end
+        p_one_turn(player_one, board_array, updated_board)
       else
         puts "Player #{player_two}'s turn!"
         band = false
@@ -130,4 +112,35 @@ if key == 'P'
   end
 else
   puts 'Execute the game again to play it'
+end
+
+# Temporary methods
+
+# Player one turn method
+def p_one_turn(player_one_name, board_array, updated_board)
+  puts "Player #{player_one}'s turn!"
+  band = false
+  until band # In case that the slot is filled I need to restart the loop
+    puts 'Please select one empty space'
+    puts updated_board
+    number = gets.chomp.to_i
+    if all.include?(number) # I ask if the number selected is in the (1..9) range
+      if board_array[number - 1] == 'X' || board_array[number - 1] == 'O'
+        puts 'Slot occupied'
+      else # analize in the following lines if the next move is a win move or a draw move
+        board_array[number - 1] = 'X'
+        puts updated_board
+        print board_array, "\n"
+        band = true # Stops the loop to let the player's next turn
+      end
+    else
+      puts 'No such position'
+    end
+  end
+end
+
+# Player two turn method
+
+def p_two_turn
+
 end
