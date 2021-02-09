@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # Temporary methods ------------------------------------------------------------------------------
 
-super_var = nil
+# super_var = true
 # Shows board
 def updated_board(board_array)
   puts "#{board_array[0]} | #{board_array[1]} | #{board_array[2]}"
@@ -21,19 +21,44 @@ def empty_board
 end
 
 # win or draw logic
-def win_or_draw(win, i)
+def win_or_draw_pone(accu, player_one)
   # rand(0..30) < 10 ? win = true : rand(0..30) < 20 ? draw = true : (win , draw = false , false)
-  random = rand(0..30)
-  if random < 10 && random > 0
-    win = true
-  elsif random < 20 && random > 11
-    draw = true
+  coin = rand.round.zero? ? 'heads' : 'tails'
+  return true unless accu >= 4
+
+  if coin == 'heads'
+    puts "#{player_one} WINs!"
+    false
+  elsif coin == 'tails'
+    puts 'Its a DRAW'
+    false
+  elsif accu == 9
+    puts 'No more plays available. Its a DRAW'
+    false
   end
 end
 
+def win_or_draw_ptwo(accu, player_two)
+  # rand(0..30) < 10 ? win = true : rand(0..30) < 20 ? draw = true : (win , draw = false , false)
+  coin = rand.round.zero? ? 'heads' : 'tails'
+  return true unless accu >= 4
+
+  if coin == 'heads'
+    puts "#{player_two} WINs!"
+    false
+  elsif coin == 'tails'
+    puts 'Its a DRAW'
+    false
+  elsif accu == 9
+    puts 'No more plays available. Its a DRAW'
+    false
+  end
+  puts 'ENTERED?'
+end
+
 # Player one turn method
-def p_one_turn(player_one, board_array, all, game_on, i, win, draw)
-  puts "Player #{player_one}'s turn!"  
+def p_one_turn(player_one, board_array, all)
+  puts "Player #{player_one}'s turn!"
   band = false
   until band # In case that the slot is filled I need to restart the loop
     puts 'Please select one empty space'
@@ -52,24 +77,11 @@ def p_one_turn(player_one, board_array, all, game_on, i, win, draw)
       puts 'No such position'
     end
   end
-  if i >= 4
-    if win == true
-      puts "#{player_one} WINs!"
-      super_var = false
-    elsif draw == true
-      puts 'Its a DRAW'
-      super_var = false
-    elsif i == 9
-      puts 'No more plays available. Its a DRAW'
-      super_var = false
-    end
-  end
-  puts "GAME ON IS ???? #{super_var}"
 end
 
 # Player two turn method
 
-def p_two_turn(player_two, board_array, all, game_on, i, win, draw)
+def p_two_turn(player_two, board_array, all)
   puts "Player #{player_two}'s turn!"
   band = false
   until band # In case that the slot is filled I need to restart the loop
@@ -89,19 +101,6 @@ def p_two_turn(player_two, board_array, all, game_on, i, win, draw)
       puts 'No such position'
     end
   end
-  if i >= 4
-    if win == true
-      puts "#{player_two} WINs!"
-      super_var = false
-    elsif draw == true
-      puts 'Its a DRAW'
-      super_var = false
-    elsif i == 9
-      puts 'No more plays available. Its a DRAW'
-      super_var = false
-    end
-  end
-  puts "GAME ON IS ???? #{super_var}"
 end
 
 puts 'WELCOME'
@@ -140,73 +139,47 @@ if key == 'P'
     player_coin = 'tails'
   end
   coin = rand.round.zero? ? 'heads' : 'tails'
-  game_on = true
-  win = false
-  draw = false
-  i = 0
+  accu = 0
   if player_coin == coin
-    while game_on
-      random = rand(0..30)
-      if random < 10 && random > 0
-        win = true
-      elsif random < 20 && random > 11
-        draw = true
-      end
-      p_one_turn(player_one, board_array, all, game_on, i, win, draw)
-      game_on = super_var
-      i += 1
-      puts "GAME ON IS ----------> #{game_on}" 
-      random = rand(0..30)
-      if random < 10 && random > 0
-        win = true
-      elsif random < 20 && random > 11
-        draw = true
-      end
-      p_two_turn(player_two, board_array, all, game_on, i, win, draw)
-      game_on = super_var
-      i += 1
-      puts "GAME ON IS ----------> #{game_on}"
+    game_on = true
+    while game_on && accu < 9
+      game_on = true
+      p_one_turn(player_one, board_array, all)
+      puts win_or_draw_ptwo(accu, player_one)
+      puts "game on is = #{game_on}"
+      game_on = win_or_draw_pone(accu, player_one)
+      puts win_or_draw_ptwo(accu, player_one)
+      puts "game on is = #{game_on}"
+      break if game_on == false
+
+      accu += 1
+      # HERE ENDS THE PLAYER ONE TURN
+      p_two_turn(player_two, board_array, all)
+      game_on = win_or_draw_ptwo(accu, player_two)
+      puts 'game on is =', win_or_draw_ptwo(accu, player_two)
+      puts "game on is = #{game_on}"
+      accu += 1
+      # HERE ENDS THE PLAYER TWO TURN
     end
-    # all.each do |elem|
-    #   if [1, 3, 5, 7, 9].include?(elem)
-    #     p_one_turn(player_one, board_array, all)
-    #   else
-    #     p_two_turn(player_two, board_array, all)
-    #   end
-    # end
   elsif player_coin != coin
     game_on = true
-    win = false
-    draw = false
-    i = 0
-    while game_on
-      random = rand(0..30)
-      if random < 10 && random > 0
-        win = true
-      elsif random < 20 && random > 11
-        draw = true
-      end 
-      p_one_turn(player_one, board_array, all, game_on, i, win, draw)
-      i += 1
-      puts "GAME ON IS ----------> #{game_on}"
-      random = rand(0..30)
-      if random < 10 && random > 0
-        win = true
-      elsif random < 20 && random > 11
-        draw = true
-      end
-      p_two_turn(player_two, board_array, all, game_on, i, win, draw)
-      i += 1
-      puts "GAME ON IS ----------> #{game_on}"
+    while game_on && accu < 9
+      game_on = true
+      p_two_turn(player_two, board_array, all)
+      game_on = win_or_draw_ptwo(accu, player_two)
+      puts 'game on is =', win_or_draw_ptwo(accu, player_two)
+      puts "game on is = '#{game_on}'"
+      break if game_on == false
+
+      accu += 1
+      # HERE ENDS THE PLAYER TWO TURN
+      p_one_turn(player_one, board_array, all)
+      game_on = win_or_draw_pone(accu, player_one)
+      puts 'game on is = ', win_or_draw_ptwo(accu, player_one)
+      puts "game on is = '#{game_on}'"
+      accu += 1
+      # HERE ENDS THE PLAYER ONE TURN
     end
-    
-    # all.each do |elem|      
-    #   if [1, 3, 5, 7, 9].include?(elem)
-    #     p_two_turn(player_two, board_array, all)
-    #   else
-    #     p_one_turn(player_one, board_array, all)
-    #   end
-    # end
   end
 else
   puts 'Execute the game again to play it'
