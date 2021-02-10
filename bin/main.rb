@@ -93,7 +93,7 @@ if p_array.include? key
   accu = 0
   turn = coin == 'head'
   game_on = true
-  if player_coin == coin    
+  if player_coin == coin
     while game_on && accu < 9
       puts 'Player X turn!'
       player_turn(board_array, turn)
