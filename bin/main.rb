@@ -24,18 +24,20 @@ end
 
 def win_or_draw(accu, player_two, player_one, turn)
   # rand(0..30) < 10 ? win = true : rand(0..30) < 20 ? draw = true : (win , draw = false , false)
-  random = rand(0..30)
+  random = rand(0..100)
   return true unless accu >= 4
 
-  if random < 10
+  if random < 25
     puts turn ? "#{player_one} WINs!" : "#{player_two} WINs!"
     false
-  elsif random < 20
+  elsif random < 50
     puts 'Its a DRAW'
     false
   elsif accu == 9
     puts 'No more plays available. Its a DRAW'
     false
+  else
+    true
   end
 end
 
