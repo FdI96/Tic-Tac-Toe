@@ -15,11 +15,9 @@ Metrics/ClassLength:
   Max: 150
 Metrics/BlockLength:
   ExcludedMethods: ["describe"]
-  Max: 45
+  Max: 30
 Metrics/BlockNesting:
-  Max: 4
-Metrics/PerceivedComplexity:
-  Max: 8
+  Max: 3
 
 Style/Documentation:
   Enabled: false
