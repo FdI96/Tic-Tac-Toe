@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 # Temporary methods ------------------------------------------------------------------------------
 
-
 # Shows board
 def updated_board(board_array)
   puts "#{board_array[0]} | #{board_array[1]} | #{board_array[2]}"
@@ -67,10 +66,11 @@ puts "Press 'S' to start"
 response = gets.chomp
 board_array = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 all = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+s_array = %w[S s]
+p_array = %w[P p]
 # combination_array = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1 ,4 ,7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 6]]
 
-raise WrongOption unless response == 'S' || response == 's' # IT RAISE AN ERROR IN CASE THAT IS A WRONG OPTION
-
+raise WrongOption unless s_array.include? response # IT RAISE AN ERROR IN CASE THAT IS A WRONG OPTION
 
 puts 'Creating Game instance.......'
 puts 'Player one name:'
@@ -87,7 +87,7 @@ puts board
 empty_board # I have to display the board through the display method from the board instance
 puts "Press 'P' to start"
 key = gets.chomp
-if key == 'P' || key == 'p'
+if p_array.include? key
   # Start the game vs player 2
   puts "#{player_one} please press H to select 'Heads' or T to select 'Tails'"
   player_coin = gets.chomp
