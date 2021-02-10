@@ -21,44 +21,26 @@ def empty_board
 end
 
 # win or draw logic
-def win_or_draw_pone(accu, player_one)
+
+def win_or_draw(accu, player_two, player_one, turn)
   # rand(0..30) < 10 ? win = true : rand(0..30) < 20 ? draw = true : (win , draw = false , false)
-  coin = rand.round.zero? ? 'heads' : 'tails'
+  random = rand(0..30)
   return true unless accu >= 4
 
-  if coin == 'heads'
-    puts "#{player_one} WINs!"
+  if random < 10
+    puts turn ? "#{player_one} WINs!" : "#{player_two} WINs!"
     false
-  elsif coin == 'tails'
+  elsif random < 20
     puts 'Its a DRAW'
     false
   elsif accu == 9
     puts 'No more plays available. Its a DRAW'
     false
   end
-end
-
-def win_or_draw_ptwo(accu, player_two)
-  # rand(0..30) < 10 ? win = true : rand(0..30) < 20 ? draw = true : (win , draw = false , false)
-  coin = rand.round.zero? ? 'heads' : 'tails'
-  return true unless accu >= 4
-
-  if coin == 'heads'
-    puts "#{player_two} WINs!"
-    false
-  elsif coin == 'tails'
-    puts 'Its a DRAW'
-    false
-  elsif accu == 9
-    puts 'No more plays available. Its a DRAW'
-    false
-  end
-  puts 'ENTERED?'
 end
 
 # Player one turn method
-def p_one_turn(player_one, board_array, all)
-  puts "Player #{player_one}'s turn!"
+def player_turn(board_array, all, turn)
   band = false
   until band # In case that the slot is filled I need to restart the loop
     puts 'Please select one empty space'
@@ -68,33 +50,8 @@ def p_one_turn(player_one, board_array, all)
       if board_array[number - 1] == 'X' || board_array[number - 1] == 'O'
         puts 'Slot occupied'
       else # analize in the following lines if the next move is a win move or a draw move
-        board_array[number - 1] = 'X'
+        board_array[number - 1] = turn ? 'X' : 'O'
         updated_board(board_array)
-        print board_array, "\n"
-        band = true # Stops the loop to let the player's next turn
-      end
-    else
-      puts 'No such position'
-    end
-  end
-end
-
-# Player two turn method
-
-def p_two_turn(player_two, board_array, all)
-  puts "Player #{player_two}'s turn!"
-  band = false
-  until band # In case that the slot is filled I need to restart the loop
-    puts 'Please select one empty space'
-    updated_board(board_array)
-    number = gets.chomp.to_i
-    if all.include?(number) # I ask if the number selected is in the (1..9) range
-      if board_array[number - 1] == 'O' || board_array[number - 1] == 'X'
-        puts 'Slot occupied'
-      else # analize in the following lines if the next move is a win move or a draw move
-        board_array[number - 1] = 'O'
-        updated_board(board_array)
-        print board_array, "\n"
         band = true # Stops the loop to let the player's next turn
       end
     else
@@ -143,40 +100,38 @@ if key == 'P'
   if player_coin == coin
     game_on = true
     while game_on && accu < 9
+      turn = true
       game_on = true
-      p_one_turn(player_one, board_array, all)
-      puts win_or_draw_ptwo(accu, player_one)
-      puts "game on is = #{game_on}"
-      game_on = win_or_draw_pone(accu, player_one)
-      puts win_or_draw_ptwo(accu, player_one)
-      puts "game on is = #{game_on}"
+      puts "Player #{player_one}'s turn!"
+      player_turn(board_array, all, turn)
+      game_on = win_or_draw(accu, player_two, player_one, turn)
       break if game_on == false
 
       accu += 1
       # HERE ENDS THE PLAYER ONE TURN
-      p_two_turn(player_two, board_array, all)
-      game_on = win_or_draw_ptwo(accu, player_two)
-      puts 'game on is =', win_or_draw_ptwo(accu, player_two)
-      puts "game on is = #{game_on}"
+      turn = false
+      puts "Player #{player_two}'s turn!"
+      player_turn(board_array, all, turn)
+      game_on = win_or_draw(accu, player_two, player_one, turn)
       accu += 1
       # HERE ENDS THE PLAYER TWO TURN
     end
   elsif player_coin != coin
     game_on = true
     while game_on && accu < 9
+      turn = false
       game_on = true
-      p_two_turn(player_two, board_array, all)
-      game_on = win_or_draw_ptwo(accu, player_two)
-      puts 'game on is =', win_or_draw_ptwo(accu, player_two)
-      puts "game on is = '#{game_on}'"
+      puts "Player #{player_two}'s turn!"
+      player_turn(board_array, all, turn)
+      game_on = win_or_draw(accu, player_two, player_one, turn)
       break if game_on == false
 
       accu += 1
       # HERE ENDS THE PLAYER TWO TURN
-      p_one_turn(player_one, board_array, all)
-      game_on = win_or_draw_pone(accu, player_one)
-      puts 'game on is = ', win_or_draw_ptwo(accu, player_one)
-      puts "game on is = '#{game_on}'"
+      turn = true
+      puts "Player #{player_one}'s turn!"
+      player_turn(board_array, all, turn)
+      game_on = win_or_draw(accu, player_two, player_one, turn)
       accu += 1
       # HERE ENDS THE PLAYER ONE TURN
     end
