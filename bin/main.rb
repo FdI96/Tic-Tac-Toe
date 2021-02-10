@@ -40,13 +40,13 @@ def win_or_draw(accu, player_two, player_one, turn)
 end
 
 # Player one turn method
-def player_turn(board_array, all, turn)
+def player_turn(board_array, turn)
   band = false
   until band
     puts 'Please select one empty space'
     updated_board(board_array)
     number = gets.chomp.to_i
-    if all.include?(number)
+    if (1..9).include?(number)
       if board_array[number - 1] == 'X' || board_array[number - 1] == 'O'
         puts 'Slot occupied'
       else
@@ -123,7 +123,7 @@ if p_array.include? key
       turn = false
       game_on = true
       puts "Player #{player_two}'s turn!"
-      player_turn(board_array, all, turn)
+      player_turn(board_array, turn)
       game_on = win_or_draw(accu, player_two, player_one, turn)
       break if game_on == false
 
@@ -131,7 +131,7 @@ if p_array.include? key
       # HERE ENDS THE PLAYER TWO TURN
       turn = true
       puts "Player #{player_one}'s turn!"
-      player_turn(board_array, all, turn)
+      player_turn(board_array, turn)
       game_on = win_or_draw(accu, player_two, player_one, turn)
       accu += 1
       # HERE ENDS THE PLAYER ONE TURN
