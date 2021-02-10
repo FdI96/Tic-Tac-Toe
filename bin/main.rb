@@ -68,27 +68,23 @@ board_array = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 all = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 s_array = %w[S s]
 p_array = %w[P p]
-# combination_array = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1 ,4 ,7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 6]]
-
-raise WrongOption unless s_array.include? response # IT RAISE AN ERROR IN CASE THAT IS A WRONG OPTION
+raise WrongOption unless s_array.include? response
 
 puts 'Creating Game instance.......'
 puts 'Player one name:'
 pone = gets.chomp
-player_one = pone # Here I have to create a new Player class instance
+player_one = pone
 puts 'Creating Player 1 Instance'
 puts 'Player two name:'
 ptwo = gets.chomp
-player_two = ptwo # Here I have to crate a New Player Instance
+player_two = ptwo
 puts "Hello #{player_one} and #{player_two} ready to start the game?"
-board = puts 'This is the board instance class' # Here I have to create a new Board class instance
-# board.display
+board = puts 'This is the board instance class'
 puts board
-empty_board # I have to display the board through the display method from the board instance
+empty_board
 puts "Press 'P' to start"
 key = gets.chomp
 if p_array.include? key
-  # Start the game vs player 2
   puts "#{player_one} please press H to select 'Heads' or T to select 'Tails'"
   player_coin = gets.chomp
   if player_coin == 'H'
@@ -109,13 +105,11 @@ if p_array.include? key
       break if game_on == false
 
       accu += 1
-      # HERE ENDS THE PLAYER ONE TURN
       turn = false
       puts "Player #{player_two}'s turn!"
-      player_turn(board_array, all, turn)
+      player_turn(board_array, turn)
       game_on = win_or_draw(accu, player_two, player_one, turn)
       accu += 1
-      # HERE ENDS THE PLAYER TWO TURN
     end
   elsif player_coin != coin
     game_on = true
@@ -128,13 +122,11 @@ if p_array.include? key
       break if game_on == false
 
       accu += 1
-      # HERE ENDS THE PLAYER TWO TURN
       turn = true
       puts "Player #{player_one}'s turn!"
       player_turn(board_array, turn)
       game_on = win_or_draw(accu, player_two, player_one, turn)
       accu += 1
-      # HERE ENDS THE PLAYER ONE TURN
     end
   end
 else
