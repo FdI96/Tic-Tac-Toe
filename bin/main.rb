@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # Temporary methods ------------------------------------------------------------------------------
 
-# super_var = true
+
 # Shows board
 def updated_board(board_array)
   puts "#{board_array[0]} | #{board_array[1]} | #{board_array[2]}"
@@ -23,7 +23,6 @@ end
 # win or draw logic
 
 def win_or_draw(accu, player_two, player_one, turn)
-  # rand(0..30) < 10 ? win = true : rand(0..30) < 20 ? draw = true : (win , draw = false , false)
   random = rand(0..100)
   return true unless accu >= 4
 
@@ -44,17 +43,17 @@ end
 # Player one turn method
 def player_turn(board_array, all, turn)
   band = false
-  until band # In case that the slot is filled I need to restart the loop
+  until band
     puts 'Please select one empty space'
     updated_board(board_array)
     number = gets.chomp.to_i
-    if all.include?(number) # I ask if the number selected is in the (1..9) range
+    if all.include?(number)
       if board_array[number - 1] == 'X' || board_array[number - 1] == 'O'
         puts 'Slot occupied'
-      else # analize in the following lines if the next move is a win move or a draw move
+      else
         board_array[number - 1] = turn ? 'X' : 'O'
         updated_board(board_array)
-        band = true # Stops the loop to let the player's next turn
+        band = true
       end
     else
       puts 'No such position'
@@ -70,9 +69,9 @@ board_array = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 all = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 # combination_array = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1 ,4 ,7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 6]]
 
-raise WrongOption unless response == 'S'
+raise WrongOption unless response == 'S' || response == 's' # IT RAISE AN ERROR IN CASE THAT IS A WRONG OPTION
 
-# play vs other player
+
 puts 'Creating Game instance.......'
 puts 'Player one name:'
 pone = gets.chomp
@@ -88,7 +87,7 @@ puts board
 empty_board # I have to display the board through the display method from the board instance
 puts "Press 'P' to start"
 key = gets.chomp
-if key == 'P'
+if key == 'P' || key == 'p'
   # Start the game vs player 2
   puts "#{player_one} please press H to select 'Heads' or T to select 'Tails'"
   player_coin = gets.chomp
