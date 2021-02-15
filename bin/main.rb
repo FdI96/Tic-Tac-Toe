@@ -34,7 +34,7 @@ if p_array.include? key
   game_on = true
   if player_coin == coin
     while game_on && accu < 9
-      player = turn ? player_one : player_two
+      player = board.turn(turn, player_one, player_two)
       puts "Player #{player.name}'s turn!"
       player.player_turn(board, turn)
       accu += 1
@@ -43,7 +43,7 @@ if p_array.include? key
     end
   elsif player_coin != coin
     while game_on && accu < 9
-      player = turn ? player_one : player_two
+      player = board.turn(turn, player_one, player_two)
       puts "Player #{player.name}'s turn!"
       player.player_turn(board, turn)
       game_on = board.win_or_draw(accu, player)
