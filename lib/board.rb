@@ -31,11 +31,11 @@ class Board
   def win_or_draw(accu, player)
     win = false
     combination_array.each { |elem| elem.all?('X') || elem.all?('O') ? win = true : false }
-    if accu == 9
-      puts 'No more plays available. Its a DRAW'
-      false
-    elsif win
+    if win
       puts "Player #{player.name} WINS"
+      false
+    elsif accu == 9
+      puts 'No more plays available. Its a DRAW'
       false
     else
       true

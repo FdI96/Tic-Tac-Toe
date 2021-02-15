@@ -49,11 +49,11 @@ if p_array.include? key
       player = board.turn(turn, player_one, player_two)
       puts "Player #{player.name}'s turn!"
       player.player_turn(board, turn)
-      game_on = board.win_or_draw(accu, player)
       accu += 1
+      game_on = board.win_or_draw(accu, player)
       turn = !turn
     end
   end
 else
-  puts 'Execute the game again to play it'
+  puts 'Unknow commnad. Please, Execute the game again to play it'
 end
