@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
-require '../lib/game_logic.rb'
+require_relative '../lib/board.rb'
+require_relative '../lib/player.rb'
 
 s_array = %w[S s]
 p_array = %w[P p]
