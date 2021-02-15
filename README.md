@@ -25,7 +25,10 @@ Please install ruby, you may follow this guide from Odin Project webpage [here](
 
 ## USAGE
 
-To try the basic flow of the game from the "main.rb" file type in your console: "bin/main.rb"
+    To run the code type follow this intructions:
+        -Open your console.
+        -Change the directory to bin writting "cd ./Tic-Tac-Toe/bin"
+        - write "ruby main.rb"
 
 ## AUTHOR
 
