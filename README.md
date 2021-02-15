@@ -8,7 +8,7 @@ Tic Tac Toe game in a shell for one or two players
 
 # Getting started :
 
-In this second milestone project, I created the "User's interface" to dive in to the basic game's flow.
+In this third milestone project, I created the "game logic" from the game, combining it with the already made user interface.
 
 # Prerequisites :
 
