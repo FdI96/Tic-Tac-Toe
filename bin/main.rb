@@ -9,7 +9,9 @@ puts "Press 'S' to start"
 response = gets.chomp
 raise WrongOption unless s_array.include? response
 
-board = Board.new
+ca = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
+b = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+board = Board.new(b, ca)
 puts 'Player one name:'
 pone = gets.chomp
 player_one = Player.new(pone)
