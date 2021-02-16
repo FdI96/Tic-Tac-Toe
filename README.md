@@ -6,6 +6,10 @@ Tic Tac Toe game in a shell for one or two players
 
 **This is my third Ruby project for Microverse**
 
+# VIEW
+
+![Sreen Shot](../screenshots/tictactoe.jpg)
+
 # Getting started :
 
 This is the TIC TAC TOE game. This project was made in 4 steps. It went since the set up which is the base of the project, through the user interface build, the game logic and finally the full description of the game.
