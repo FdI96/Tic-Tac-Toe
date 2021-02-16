@@ -33,9 +33,9 @@ Please install ruby, you may follow this guide from Odin Project webpage [here](
 ## HOW TO CLONE THIS REPO?
 
     -Open your console
-    -In there, copy and paste this command: "git clone @FdI96:https://github.com/FdI96/Tic-Tac-Toe"
+    -In there, copy and paste this command: "git clone https://github.com/FdI96/Tic-Tac-Toe"
 
-    -For more information about use the git clone, visit this [LINK](https://www.atlassian.com/es/git/tutorials/setting-up-a-repository/git-clone)
+    -For more information about use the git clone, visit this [LINK](https://www.earthdatascience.org/workshops/intro-version-control-git/basic-git-commands/#:~:text=From%20your%20repository%20page%20on,like%20to%20clone%20your%20repository.)
 
 ## RULES FOR TIC-TAC-TOE
 
