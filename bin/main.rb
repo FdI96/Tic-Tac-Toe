@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 require_relative '../lib/board.rb'
+require_relative '../lib/player.rb'
 
 def updated_board(board_array)
   puts "#{board_array[0]} | #{board_array[1]} | #{board_array[2]}"
@@ -9,45 +10,19 @@ def updated_board(board_array)
   puts "#{board_array[6]} | #{board_array[7]} | #{board_array[8]}"
 end
 
-class Player
-  attr_reader :name
-
-  def initialize(name)
-    @name = name
-  end
-
-  def player_turn(board, turn)
-    band = false
-    band = select_slot(band, turn, board) until band
-  end
-
-  def select_slot(band, turn, board)
+def loop_slot(band, board, turn)
+  until band
     puts 'Please select one empty space'
+    updated_board(board.board_array)
     number = gets.chomp.to_i
     if (1..9).include?(number)
       if board.board_array[number - 1] == 'X' || board.board_array[number - 1] == 'O'
         puts 'Slot occupied'
       else
-        board.modify_board(number, turn)
-        band = true
+        band = board.modify_board(number, turn)
       end
     else
       puts 'No such position'
-    end
-    band
-  end
-
-  def win_or_draw(accu, player, combination_array)
-    win = false
-    combination_array.each { |elem| elem.all?('X') || elem.all?('O') ? win = true : false }
-    if win
-      puts "Player #{player.name} WINS"
-      false
-    elsif accu == 9
-      puts 'No more plays available. Its a DRAW'
-      false
-    else
-      true
     end
   end
 end
@@ -74,37 +49,23 @@ updated_board(board.board_array)
 puts "Press 'P' to start"
 key = gets.chomp
 if p_array.include? key
-  puts "#{player_one.name} please press H to select 'Heads' or T to select 'Tails'"
-  player_coin = gets.chomp
-  if player_coin == 'H'
-    player_coin = true
-  elsif player_coin == 'T'
-    player_coin = false
-  end
-  coin = rand.round.zero? ? true : false
-  turn = coin
+  turn = true
   accu = 0
   game_on = true
-  if player_coin == coin
-    while game_on && accu < 9
-      player = board.turn(turn, player_one, player_two)
-      puts "Player #{player.name}'s turn!"
+  while game_on && accu < 9
+    player = board.turn(turn, player_one, player_two)
+    puts "Player #{player.name}'s turn!"
+    band = false
+    loop_slot(band, board, turn)
+    game_on = board.win_or_draw(accu)
+    accu += 1
+    if accu == 9
       updated_board(board.board_array)
-      player.player_turn(board, turn)
-      accu += 1
-      game_on = player.win_or_draw(accu, player, board.combination_array)
-      turn = !turn
+      puts 'No more plays available. Its a DRAW'
+    elsif !game_on
+      puts "Player #{player.name} WINS"
     end
-  elsif player_coin != coin
-    while game_on && accu < 9
-      player = board.turn(turn, player_one, player_two)
-      puts "Player #{player.name}'s turn!"
-      updated_board(board.board_array)
-      player.player_turn(board, turn)
-      accu += 1
-      game_on = player.win_or_draw(accu, player, board.combination_array)
-      turn = !turn
-    end
+    turn = !turn
   end
 else
   puts 'Unknow commnad. Please, Execute the game again to play it'

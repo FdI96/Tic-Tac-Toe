@@ -18,5 +18,12 @@ class Board
   def modify_board(number, turn)
     board_array[number - 1] = turn ? 'X' : 'O'
     combination_array.map! { |elem| elem.map! { |sub_elem| inside_array(sub_elem, number) } }
+    true
+  end
+
+  def win_or_draw(accu)
+    win = false
+    combination_array.each { |elem| elem.all?('X') || elem.all?('O') ? win = true : false }
+    win || accu == 9 ? false : true
   end
 end
