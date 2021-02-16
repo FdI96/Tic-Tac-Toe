@@ -8,7 +8,7 @@ Tic Tac Toe game in a shell for one or two players
 
 # VIEW
 
-![Sreen Shot](../screenshots/tictactoe.jpg)
+![Sreen Shot](./screenshots/tictactoe.jpg)
 
 # Getting started :
 
