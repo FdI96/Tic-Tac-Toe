@@ -26,4 +26,12 @@ class Board
     combination_array.each { |elem| elem.all?('X') || elem.all?('O') ? win = true : false }
     win || accu == 9 ? false : true
   end
+
+  def updated_board
+    "    #{board_array[0]} | #{board_array[1]} | #{board_array[2]}
+    -- --- --
+    #{board_array[3]} | #{board_array[4]} | #{board_array[5]}
+    -- --- --
+    #{board_array[6]} | #{board_array[7]} | #{board_array[8]}"
+  end
 end
