@@ -30,6 +30,13 @@ Please install ruby, you may follow this guide from Odin Project webpage [here](
         -Change the directory to bin writting "cd ./Tic-Tac-Toe/bin"
         - write "ruby main.rb" on your console
 
+## HOW TO CLONE THIS REPO?
+
+    -Open your console
+    -In there, copy and paste this command: "git clone @FdI96:https://github.com/FdI96/Tic-Tac-Toe"
+
+    -For more information about use the git clone, visit this [LINK](https://www.atlassian.com/es/git/tutorials/setting-up-a-repository/git-clone)
+
 ## RULES FOR TIC-TAC-TOE
 
     1. The game is played on a grid that's 3 squares by 3 squares.
