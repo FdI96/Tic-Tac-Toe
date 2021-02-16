@@ -19,32 +19,7 @@ def loop_slot(band, board, turn)
   end
 end
 
-s_array = %w[S s]
-p_array = %w[P p]
-puts 'WELCOME'
-puts 'This is my TIC TAC TOE game, hope you enjoy it'
-puts "Press 'S' to start"
-response = gets.chomp
-raise WrongOption unless s_array.include? response
-
-ca = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
-b = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-board = Board.new(b, ca)
-puts 'Player one name:'
-pone = gets.chomp
-return puts 'Enter a name please' if pone == ''
-
-player_one = Player.new(pone)
-puts 'Player two name:'
-ptwo = gets.chomp
-return puts 'Enter a name please' if ptwo == ''
-
-player_two = Player.new(ptwo)
-puts "Hello #{player_one.name} and #{player_two.name} ready to start the game?"
-puts board.updated_board
-puts "Press 'P' to start"
-key = gets.chomp
-if p_array.include? key
+def game(board, player_one, player_two)
   turn = true
   accu = 0
   game_on = true
@@ -64,6 +39,34 @@ if p_array.include? key
     end
     turn = !turn
   end
+  game_on
+end
+
+s_array = %w[S s]
+p_array = %w[P p]
+puts 'WELCOME'
+puts 'This is my TIC TAC TOE game, hope you enjoy it'
+puts "Type 'S' to start"
+response = gets.chomp
+raise WrongOption unless s_array.include? response
+
+ca = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
+b = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+board = Board.new(b, ca)
+puts 'Player one name:'
+pone = gets.chomp
+pone = 'Player One' if pone == ''
+player_one = Player.new(pone)
+puts 'Player two name:'
+ptwo = gets.chomp
+ptwo = 'Player Two' if ptwo == ''
+player_two = Player.new(ptwo)
+puts "Hello #{player_one.name} and #{player_two.name} ready to start the game?"
+puts board.updated_board
+puts "Type 'P' to start"
+key = gets.chomp
+if p_array.include? key
+  game(board, player_one, player_two)
 else
   puts 'Unknow commnad. Please, Execute the game again to play it'
 end
