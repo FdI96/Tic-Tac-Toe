@@ -1,14 +1,7 @@
 #!/usr/bin/env ruby
 require_relative '../lib/board.rb'
 require_relative '../lib/player.rb'
-
-def updated_board(board_array)
-  puts "#{board_array[0]} | #{board_array[1]} | #{board_array[2]}"
-  puts '-- --- --'
-  puts "#{board_array[3]} | #{board_array[4]} | #{board_array[5]}"
-  puts '-- --- --'
-  puts "#{board_array[6]} | #{board_array[7]} | #{board_array[8]}"
-end
+require_relative '../lib/tools.rb'
 
 def loop_slot(band, board, turn)
   until band
@@ -40,9 +33,13 @@ b = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 board = Board.new(b, ca)
 puts 'Player one name:'
 pone = gets.chomp
+raise EnterName if pone == ''
+
 player_one = Player.new(pone)
 puts 'Player two name:'
 ptwo = gets.chomp
+raise EnterName if ptwo == ''
+
 player_two = Player.new(ptwo)
 puts "Hello #{player_one.name} and #{player_two.name} ready to start the game?"
 updated_board(board.board_array)
@@ -60,10 +57,11 @@ if p_array.include? key
     game_on = board.win_or_draw(accu)
     accu += 1
     if accu == 9
-      updated_board(board.board_array)
       puts 'No more plays available. Its a DRAW'
+      updated_board(board.board_array)
     elsif !game_on
       puts "Player #{player.name} WINS"
+      updated_board(board.board_array)
     end
     turn = !turn
   end
