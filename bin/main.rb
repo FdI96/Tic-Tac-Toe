@@ -25,7 +25,7 @@ def game(board, player_one, player_two)
   game_on = true
   while game_on && accu < 9
     player = board.turn(turn, player_one, player_two)
-    puts "#{player.name}'s turn!"
+    puts "#{player}'s turn!"
     band = false
     loop_slot(band, board, turn)
     game_on = board.win_or_draw(accu)
@@ -34,7 +34,7 @@ def game(board, player_one, player_two)
       puts 'No more plays available. Its a DRAW'
       puts board.updated_board
     elsif !game_on
-      puts "#{player.name} WINS"
+      puts "#{player} WINS"
       puts board.updated_board
     end
     turn = !turn
