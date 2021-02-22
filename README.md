@@ -2,9 +2,9 @@
 
 Tic Tac Toe game in a shell for one or two players
 
-# Tic-Tac-Toe First Milestone : Set-up
+**This is my sixth Ruby project for Microverse**
 
-**This is my third Ruby project for Microverse**
+![screenshot](./screenshots/main.pgn)
 
 # VIEW
 
