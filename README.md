@@ -4,7 +4,7 @@ Tic Tac Toe game in a shell for one or two players
 
 **This is my sixth Ruby project for Microverse**
 
-![screenshot](./screenshots/main.pgn)
+![screenshot](./screenshots/main.png)
 
 # VIEW
 
