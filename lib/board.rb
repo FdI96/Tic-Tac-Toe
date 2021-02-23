@@ -7,7 +7,7 @@ class Board
   end
 
   def turn(turn, player_one, player_two)
-    turn ? player_one : player_two
+    turn ? player_one.name : player_two.name
   end
 
   def inside_array(sub_elem, number)
