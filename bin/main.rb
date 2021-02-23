@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
-require_relative '../lib/board.rb'
-require_relative '../lib/player.rb'
+require_relative '../lib/board'
+require_relative '../lib/player'
 
 def loop_slot(band, board, turn)
   until band
